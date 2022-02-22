@@ -51,7 +51,7 @@ var File2Echo = function(){
                     lineBreak = '';
                     break;
                 default:
-                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' >> " + fileName);
+                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' >> " + fileName + '\r\n');
                     break;
             }
 
