@@ -29,7 +29,7 @@ var File2Echo = function(){
         return data;
     }
 
-    this.ToEchoLinux = (file, mode, fileName, encoding = "utf8") => {
+    this.ToEchoLinux = (file, mode, fileName, encoding = "utf8", avoidOverwrite = false) => {
         var data = this.ReadFile(file, encoding);
         var hex = this.Hex(data);
         var result = [];
@@ -44,14 +44,16 @@ var File2Echo = function(){
         for( var i in data ){
             // printf \"%b\" \'\x66\x6f\x6f\' > file.bin
             var and = "&&";
+            var pipe = ">>";
+            if (i == 0 && !avoidOverwrite) pipe = ">";
             switch(mode){
                 case "oneline":
                     if( i == data.length -1) and = '';
-                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' >> " + fileName+ " " + and + ' ');
+                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' "+ pipe + " " + fileName+ " " + and + ' ');
                     lineBreak = '';
                     break;
                 default:
-                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' >> " + fileName + ' ');
+                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' "+ pipe + " " + fileName + ' ');
                     break;
             }
 
@@ -73,6 +75,8 @@ help.AddParam("\t-h", "Help");
 help.AddParam("\t-f", "Specify the file");
 help.AddParam("\t-o", "Output file name. Default: \"file.bin\"");
 help.AddParam("\t-m", "Mode. Ex.: oneline, onequote, default");
+help.AddParam("\t-a", "Append data to existing file (avoid overwriting)");
+
 //help.AddParam("\t-e", "Encoding. Ex.: utf8, utf16le, latin1");
 
 
@@ -98,9 +102,11 @@ console.log(help.GetBanner());
 url = argumentParser.GetParamValue("-f", "#error");
 mode = argumentParser.GetParamValue("-m", "default");
 fileName = argumentParser.GetParamValue("-o", "file.bin");
+avoidOverwrite = argumentParser.HasParam("-a");
+
 //encoding = argumentParser.GetParamValue("-e", "utf8");
 encoding = "utf8";
 
 
 
-console.log(file2echo.ToEchoLinux(url, mode, fileName, encoding))
+console.log(file2echo.ToEchoLinux(url, mode, fileName, encoding, avoidOverwrite))

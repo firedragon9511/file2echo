@@ -19,6 +19,7 @@
             -f              Specify the file
             -o              Output file name. Default: "file.bin"
             -m              Mode. Ex.: oneline, onequote, default
+            -a              Append data to existing file (avoid overwriting)
 
 <br />
 <h3>Example:</h3>	
