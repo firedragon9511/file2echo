@@ -19,3 +19,6 @@
             -f              Specify the file
             -o              Output file name. Default: "file.bin"
             -m              Mode. Ex.: oneline, onequote, default
+
+
+![alt text](example.png)
