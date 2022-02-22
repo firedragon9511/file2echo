@@ -71,7 +71,7 @@ help.AddUsage("node file2echo.js -f [FILE] [OPTIONS]");
 help.AddField("Options:\n");
 help.AddParam("\t-h", "Help");
 help.AddParam("\t-f", "Specify the file");
-help.AddParam("\t-n", "Output file name. Default: \"file.bin\"");
+help.AddParam("\t-o", "Output file name. Default: \"file.bin\"");
 help.AddParam("\t-m", "Mode. Ex.: oneline, onequote, default");
 //help.AddParam("\t-e", "Encoding. Ex.: utf8, utf16le, latin1");
 
@@ -97,7 +97,7 @@ console.log(help.GetBanner());
 
 url = argumentParser.GetParamValue("-f", "#error");
 mode = argumentParser.GetParamValue("-m", "default");
-fileName = argumentParser.GetParamValue("-n", "file.bin");
+fileName = argumentParser.GetParamValue("-o", "file.bin");
 //encoding = argumentParser.GetParamValue("-e", "utf8");
 encoding = "utf8";
 
