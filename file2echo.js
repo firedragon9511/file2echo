@@ -49,11 +49,11 @@ var File2Echo = function(){
             switch(mode){
                 case "oneline":
                     if( i == data.length -1) and = '';
-                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' "+ pipe + " " + fileName+ " " + and + ' ');
+                    result.push("printf \"%b\" \'" + this.Hex(data[i] + '\x0a') + "\' "+ pipe + " " + fileName+ " " + and + ' ');
                     lineBreak = '';
                     break;
                 default:
-                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' "+ pipe + " " + fileName + ' ');
+                    result.push("printf \"%b\" \'" + this.Hex(data[i] + '\x0a') + "\' "+ pipe + " " + fileName + ' ');
                     break;
             }
 
