@@ -57,7 +57,7 @@ var File2Echo = function(){
 
         }
 
-        return result.join(lineBreak)  + "\r\n\r\n";
+        return result.join(lineBreak)  + "\r\n\r\n\r\n\r\n";
     }
 }
 
