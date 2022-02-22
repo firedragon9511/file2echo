@@ -20,5 +20,8 @@
             -o              Output file name. Default: "file.bin"
             -m              Mode. Ex.: oneline, onequote, default
 
+<br />
+<h3>Example:</h3>	
+<br />
 
 ![alt text](example.png)
