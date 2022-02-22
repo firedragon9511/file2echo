@@ -51,13 +51,13 @@ var File2Echo = function(){
                     lineBreak = '';
                     break;
                 default:
-                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' >> " + fileName + '\r\n');
+                    result.push("printf \"%b\" \'" + this.Hex(data[i]) + "\' >> " + fileName + ' ');
                     break;
             }
 
         }
 
-        return result.join(lineBreak);
+        return result.join(lineBreak)  + "\r\n\r\n";
     }
 }
 
